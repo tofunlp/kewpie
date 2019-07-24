@@ -7,23 +7,23 @@ except ImportError:
 
 
 setup(
-        name='sister',
+        name='kewpie',
         use_scm_version=True,
         setup_requires=['setuptools_scm'],
-        description='SImple SenTence EmbeddeR',
+        description='KEyWord PIckEr with tf-idf',
         long_description=open('./README.md', encoding='utf-8').read(),
         long_description_content_type='text/markdown',
-        url='https://github.com/sobamchan/sister',
+        url='https://github.com/sobamchan/kewpie',
         author='Sotaro Takeshita',
         author_email='oh.sore.sore.soutarou@gmail.com',
         packages=[
-            'sister'
+            'kewpie'
             ],
         license='MIT',
         classifiers=[
             'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7'
             ],
-        install_requires=['fasttext', 'numpy'],
+        install_requires=[],
         tests_requires=['pytest']
         )
