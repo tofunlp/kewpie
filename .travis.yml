@@ -1,0 +1,17 @@
+language: python
+dist: xenial
+python:
+- 3.6
+- 3.7
+install:
+- pip install pipenv flake8 tox-travis
+- pipenv install
+script:
+- pipenv run flake8
+- pipenv run tox
+deploy:
+  provider: pypi
+  user: sobamchan
+  on:
+    tags: true
+  skip_existing: true
