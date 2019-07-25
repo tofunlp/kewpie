@@ -1,4 +1,4 @@
-.coverage
+.coverage*
 .eggs
 .tox
 *.egg-info
