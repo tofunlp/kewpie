@@ -59,11 +59,11 @@ class KwPickerCase(TestCase):
     def tearDown(self):
         pass
 
-    def test_get_keywords(self):
+    def test_get_keyword(self):
         sentence = docs[0]
         gt_span = (7, 10)
         gt_keyword = 'cat'
-        span, keyword = self.picker.get_keywords(sentence)
+        span, keyword = self.picker.get_keyword(sentence)
 
         self.assertEqual(span, gt_span)
         self.assertEqual(keyword, gt_keyword)

@@ -13,7 +13,7 @@ class KwPicker(object):
         self.vocab = vectorizer.get_feature_names()
         self.tokenizer = vectorizer.build_tokenizer()
 
-    def get_keywords(self, sentence: str) -> (str, int):
+    def get_keyword(self, sentence: str) -> (str, int):
         vocab = np.array(self.vocab)
 
         docs = [sentence]
