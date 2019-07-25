@@ -20,7 +20,7 @@ docs = [
 picker = KwPicker.build(docs, savedir='/dir/to/save/model/')
 
 sentence = "I am a cat."
-span, keyword = picker.get_keywords(sentence)
+span, keyword = picker.get_keyword(sentence)
 
 print(keyword)  # -> 'cat'
 ```
