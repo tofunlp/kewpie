@@ -1,23 +1,14 @@
 import os
-from typing import List
+from typing import List, Callable
 import pickle
 
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
-def build(docs: List[str], savedir: str) -> None:
-    vectorizer = TfidfVectorizer(docs)
-    vectorizer.fit(docs)
-    with open(os.path.join(savedir, 'vectorizer.pth'), 'wb') as f:
-        pickle.dump(vectorizer, f)
-
-
 class KwPicker(object):
 
-    def __init__(self, vectorizer_path: str):
-        with open(vectorizer_path, 'rb') as f:
-            vectorizer: TfidfVectorizer = pickle.load(f)
+    def __init__(self, vectorizer: TfidfVectorizer):
         self.vectorizer = vectorizer
         self.vocab = vectorizer.get_feature_names()
         self.tokenizer = vectorizer.build_tokenizer()
@@ -35,3 +26,23 @@ class KwPicker(object):
         span = (sent_idx, sent_idx + len(keyword))
 
         return span, keyword
+
+    @classmethod
+    def build(cls, docs: List[str], savedir: str = None, tokenizer: Callable = None):
+        vectorizer = TfidfVectorizer(
+                docs,
+                tokenizer=tokenizer
+                )
+        vectorizer.fit(docs)
+
+        if savedir:
+            with open(os.path.join(savedir, 'vectorizer.pth'), 'wb') as f:
+                pickle.dump(vectorizer, f)
+
+        return cls(vectorizer)
+
+    @classmethod
+    def load(cls, vectorizer_path: str):
+        with open(vectorizer_path, 'rb') as f:
+            vectorizer = pickle.load(f)
+        return cls(vectorizer)
